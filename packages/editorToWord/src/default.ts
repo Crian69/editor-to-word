@@ -126,6 +126,8 @@ export const TagType = {
   link: 'a',
   text: 'text',
   img: 'img',
+  ordered_list: 'ol',
+  unordered_list: 'ul',
 };
 
 // default border style

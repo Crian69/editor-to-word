@@ -19,10 +19,12 @@ export const contentBuilder = async (
   const isText = type === TagType.text && content;
   const isLink = name === TagType.link;
   const isTable = name === TagType.table;
+  const isList = name === TagType.ordered_list || name === TagType.unordered_list;
 
   const isNormalParagraphWithChildren =
     !isLink &&
     !isTable &&
+    !isList &&
     children &&
     isFilledArray(children) &&
     children.length > 0;
@@ -43,7 +45,10 @@ export const contentBuilder = async (
   } else if (isTable) {
     const table = await tableCreator(node, tagStyleMap);
     return table;
-  } else {
+  } else if(isList) {
+    return null;
+  }
+  else {
     return null;
   }
 };
